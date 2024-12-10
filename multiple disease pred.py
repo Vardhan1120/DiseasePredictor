@@ -11,10 +11,10 @@ st.set_page_config(page_title="Health Assistant",
                    page_icon="🧑‍⚕️")
 
 # Load models
-diabetes_model = pickle.load(open('C:/Users/HP/Desktop/multiple disease predictor/save models/diabetes_model.sav', 'rb'))
-heart_disease_model = pickle.load(open('C:/Users/HP/Desktop/multiple disease predictor/save models/heart_disease_model.sav', 'rb'))
-parkinsons_model = pickle.load(open('C:/Users/HP/Desktop/multiple disease predictor/save models/parkinsons_model.sav', 'rb'))
-breastcancer_model = pickle.load(open('C:/Users/HP/Desktop/multiple disease predictor/save models/brest_model.sav', 'rb'))
+diabetes_model = pickle.load(open('diabetes_model.sav', 'rb'))
+heart_disease_model = pickle.load(open('heart_disease_model.sav', 'rb'))
+parkinsons_model = pickle.load(open('parkinsons_model.sav', 'rb'))
+breastcancer_model = pickle.load(open('brest_model.sav', 'rb'))
 # Sidebar menu
 with st.sidebar:
     selected = option_menu('Multiple Disease Prediction System',

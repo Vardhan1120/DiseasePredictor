@@ -1,4 +1,3 @@
-
 import os
 import pickle
 import streamlit as st
@@ -15,16 +14,64 @@ diabetes_model = pickle.load(open('diabetes_model.sav', 'rb'))
 heart_disease_model = pickle.load(open('heart_disease_model.sav', 'rb'))
 parkinsons_model = pickle.load(open('parkinsons_model.sav', 'rb'))
 breastcancer_model = pickle.load(open('brest_model.sav', 'rb'))
+
 # Sidebar menu
 with st.sidebar:
     selected = option_menu('Multiple Disease Prediction System',
-                           ['Diabetes Prediction',
+                           ['Home',
+                            'Diabetes Prediction',
                             'Heart Disease Prediction',
                             'Parkinsons Prediction',
-                            'breast cancer Prediction'],
+                            'Breast Cancer Prediction'],
                            menu_icon='hospital-fill',
-                           icons=['activity', 'heart', 'person', 'activity'],
+                           icons=['house', 'activity', 'heart', 'person', 'activity'],
                            default_index=0)
+
+# Homepage
+if selected == 'Home':
+    st.title("🏥 Multiple Disease Prediction System")
+    
+    st.markdown("""
+    ## Welcome to the Advanced Health Prediction Platform
+    
+    This intelligent application leverages machine learning to provide preliminary health screenings for multiple critical conditions. 
+    Our system uses sophisticated predictive models to assess potential health risks based on input medical parameters.
+    
+    ### Available Disease Predictions:
+    
+    1. **Diabetes Prediction**
+       - Analyzes various health metrics to assess diabetes risk
+       - Includes parameters like glucose levels, BMI, age, and more
+    
+    2. **Heart Disease Prediction**
+       - Evaluates cardiovascular health indicators
+       - Considers factors such as blood pressure, cholesterol, and heart rate
+    
+    3. **Parkinson's Disease Prediction**
+       - Uses voice-related medical parameters
+       - Employs advanced voice signal processing techniques
+    
+    4. **Breast Cancer Prediction**
+       - Examines multiple tumor characteristics
+       - Analyzes cell nucleus features and measurements
+    
+    ### Important Notes:
+    
+    🚨 **Disclaimer**: This is a screening tool and NOT a substitute for professional medical advice. 
+    Always consult healthcare professionals for accurate diagnosis.
+    
+    ### How to Use:
+    
+    1. Select a specific disease prediction from the sidebar menu
+    2. Enter the required medical parameters carefully
+    3. Click the prediction button to get results
+    
+    """)
+    
+    # Optional motivational quote
+    st.markdown("""
+    > "Prevention is better than cure" - Desiderius Erasmus
+    """)
 
 # Diabetes Prediction Page
 if selected == 'Diabetes Prediction':
@@ -207,7 +254,9 @@ if selected == 'Parkinsons Prediction':
 
     st.success(parkinsons_diagnosis)
     
-if selected == 'breast cancer Prediction':
+# Breast Cancer Prediction Page
+if selected == 'Breast Cancer Prediction':
+    st.title('Breast Cancer Prediction using ML')
     # Input features
     col1, col2, col3, col4, col5 = st.columns(5)
 
@@ -314,11 +363,7 @@ if selected == 'breast cancer Prediction':
             worst_compactness, worst_concavity, worst_concave_points, worst_symmetry, worst_fractal_dimension
         ]
         user_input = [float(x) for x in user_input]
-        cancer_prediction = model.predict([user_input])
+        cancer_prediction = breastcancer_model.predict([user_input])
         cancer_diagnosis = "The person has breast cancer" if cancer_prediction[0] == 1 else "The person does not have breast cancer"
 
     st.success(cancer_diagnosis)
-
-
-
-
